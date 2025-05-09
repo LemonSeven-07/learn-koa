@@ -9,17 +9,7 @@ const router = require('../router/index.js');
 
 const app = new Koa();
 
-app.use(
-  koaBody({
-    multipart: true, // 支持文件上传
-    formidable: {
-      // 在配置选项option里，不推荐使用相对路径
-      // 在option里相对路径不是相对于当前文件， 而是相对process.cwd()
-      uploadDir: path.join(__dirname, '../uploads'), // 设置文件上传目录
-      keepExtensions: true // 保留文件扩展名
-    }
-  })
-);
+app.use(koaBody());
 
 // 静态资源托管
 app.use(KoaStatic(path.join(__dirname, '../uploads')));
